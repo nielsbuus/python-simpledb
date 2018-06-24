@@ -1,0 +1,18 @@
+[
+  {
+    "type": "riddle",
+    "answer": "Orange Is The New Black.",
+    "question": "What does Donald Trump tell all his supporters?",
+    "category": "political"
+  },
+  {
+    "type": "riddle",
+    "answer": "inheritance",
+    "question": "Whats the object-oriented way to become wealthy?",
+    "category": "computers"
+  },
+  {
+    "id": 1234,
+    "foo": "bar"
+  }
+]

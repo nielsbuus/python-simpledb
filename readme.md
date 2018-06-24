@@ -24,7 +24,7 @@ Simple persistence library with a pretty API that saves lists of dicts into JSON
 
 ### Pros
 - Only 100 lines of Python code.
-- No dependencies `json` and `pathlib` which are Python standard libraries.
+- No third party dependencies. `json` and `pathlib` which are Python standard libraries.
 - Clean simple API
 - Creates folders and JSON files automatically
 - Persisted data is human readable (it's just JSON)
