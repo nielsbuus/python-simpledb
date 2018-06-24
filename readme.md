@@ -4,23 +4,25 @@
 
 Simple persistence library with a pretty API that saves lists of dicts into JSON files.
 
-    import simpledb
+```python
+import simpledb
 
-    db = simpledb.SimpleDB("/home/joe/dump_it_here")
-    db.table("jokes").insert(category="political", type="riddle", question="What does Donald Trump tell all his supporters?", answer="Orange Is The New Black.")
-    db.table("jokes").insert({"category": "computers", "type": "riddle", "question": "Whats the object-oriented way to become wealthy?", "answer": "inheritance"})
-    db.table("jokes").count()
-    => 2
-    db.table("jokes").where(category="political").count()
-    => 1
-    db.table("jokes").where(category="computers", type="riddle").update(category="software development")
-    db.table("jokes").insert(foo="bar", id=1234)
-    db.table("jokes").where(id=1234).delete() # Removes the dict with the foo attribute above.
-    db.table("jokes").first()
-    => trump_joke # Although there is no gaurantee of order.
-    db.table("jokes").all()
-    => [trump_joke, nerd_joke]
-    db.table("jokes").delete() # Removes all jokes.
+db = simpledb.SimpleDB("/home/joe/dump_it_here")
+db.table("jokes").insert(category="political", type="riddle", question="What does Donald Trump tell all his supporters?", answer="Orange Is The New Black.")
+db.table("jokes").insert({"category": "computers", "type": "riddle", "question": "Whats the object-oriented way to become wealthy?", "answer": "inheritance"})
+db.table("jokes").count()
+=> 2
+db.table("jokes").where(category="political").count()
+=> 1
+db.table("jokes").where(category="computers", type="riddle").update(category="software development")
+db.table("jokes").insert(foo="bar", id=1234)
+db.table("jokes").where(id=1234).delete() # Removes the dict with the foo attribute above.
+db.table("jokes").first()
+=> trump_joke # Although there is no gaurantee of order.
+db.table("jokes").all()
+=> [trump_joke, nerd_joke]
+db.table("jokes").delete() # Removes all jokes.
+```
 
 ### Pros
 - Only 100 lines of Python code.
@@ -51,19 +53,25 @@ This implementation takes very little code (~100 lines of Python) and probably p
 
 Once imported, you can create a SimpleDB object. The first paramater is the directory to use for persistence. If the directory doesn't exist, SimpleDB will try and create it. If you initialize SimpleDB without a directory, your current working directory will be used.
 
-    db = simpledb.SimpleDB("/home/joe/pet_projects/storage")
+```python
+db = simpledb.SimpleDB("/home/joe/pet_projects/storage")
+```
 
 Pick a table to work with.
 
-    plant_table = db.table("plants")
+```python
+plant_table = db.table("plants")
+```
 
 This will give you a table object that maps to `/home/joe/pet_projects/storage/plants.json`. If that file already exists, SimpleDB will try and load it. If not, SimpleDB won't do anything.
 
 Let's add something.
 
-    plant_table.insert(title="Strawberries", genus="Fragaria", pros="Juicy, sweet and beautiful.", cons="Spoils easily. Easily stolen by birds.")
-    plant_table.insert(title="Raspberries", genus="Rubus", pros="Juicy and delicious. Requires minimal maintenance and weeding.", cons="Prone to beetle attacks.", note="Has a tiny computer named after it. See Raspberry Pi.")
-    plant_table.insert({"title": "Potatoes", "genus": "Solanum", "pros": Easy to cook", "cons": "If you eat them green, they might kill you.")
+```python
+plant_table.insert(title="Strawberries", genus="Fragaria", pros="Juicy, sweet and beautiful.", cons="Spoils easily. Easily stolen by birds.")
+plant_table.insert(title="Raspberries", genus="Rubus", pros="Juicy and delicious. Requires minimal maintenance and weeding.", cons="Prone to beetle attacks.", note="Has a tiny computer named after it. See Raspberry Pi.")
+plant_table.insert({"title": "Potatoes", "genus": "Solanum", "pros": Easy to cook", "cons": "If you eat them green, they might kill you.")
+```
 
 Although the library uses the term `table` for recognition, there is no schema to be enforced on the objects you insert. Only requirement is that they are passed in as named arguments or a dict and contains variables that Python's JSON library will serialize.
 
