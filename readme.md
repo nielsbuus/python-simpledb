@@ -28,6 +28,7 @@ Simple persistence library with a pretty API that saves lists of dicts into JSON
 - Clean simple API
 - Creates folders and JSON files automatically
 - Persisted data is human readable (it's just JSON)
+- Data is kept in memory for reads, so it's (fairly) fast to query (in small quantities).
 
 ### Cons
 - Very basic feature set
@@ -67,5 +68,3 @@ Let's add something.
 Although the library uses the term `table` for recognition, there is no schema to be enforced on the objects you insert. Only requirement is that they are passed in as named arguments or a dict and contains variables that Python's JSON library will serialize.
 
 At each `insert`, SimpleDB will serialize and write the list to `plants.json`, so expect slowdown as list size increases.
-
-For those interested in performance, SimpleDB keeps all accessed tables in memory and doesn't apply any indexing when querying. However, when a table is updated, the full table is written to disk again.
