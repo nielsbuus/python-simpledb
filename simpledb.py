@@ -24,8 +24,13 @@ class SimpleTable:
         self.table_rows = table_rows
         self.table_file = simple_db.directory.joinpath(self.table_name + ".json")
 
-    def insert(self, **row):
-        self.table_rows.append(row)
+    def insert(self, dict1 = None, **dict2):
+        if isinstance(dict1, dict):
+            chosen_dict = dict1
+        else:
+            chosen_dict = dict2
+
+        self.table_rows.append(chosen_dict)
         self.save_to_disk()
 
     def where(self, **conditions):
