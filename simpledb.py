@@ -40,7 +40,7 @@ class SimpleTable:
         self.where().delete()
 
     def all(self):
-        return self.where().to_list()
+        return self.where().all()
 
     def count(self):
         return len(self.all())
@@ -67,29 +67,29 @@ class SimpleTableScope:
         self.scope = scope
 
     def first(self):
-        list = self.to_list()
+        list = self.all()
         if len(list) > 0:
             return list[0]
 
     def last(self):
-        list = self.to_list()
+        list = self.all()
         if len(list) > 0:
             return list[-1]
 
     def update(self, **attributes):
-        for row in self.to_list():
+        for row in self.all():
             for attr, val in attributes.items():
                 row[attr] = val
         self.simple_table.save_to_disk()
 
     def delete(self):
-        remaining_rows = [row for row in self.simple_table.table_rows if row not in self.to_list()]
+        remaining_rows = [row for row in self.simple_table.table_rows if row not in self.all()]
         self.simple_table._set_table_rows(remaining_rows)
 
     def count(self):
-        return len(self.to_list())
+        return len(self.all())
 
-    def to_list(self):
+    def all(self):
         results = []
         for row in self.simple_table.table_rows:
             match = True

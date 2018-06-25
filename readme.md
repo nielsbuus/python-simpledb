@@ -21,6 +21,8 @@ db.table("jokes").first()
 => trump_joke # Although there is no gaurantee of order.
 db.table("jokes").all()
 => [trump_joke, nerd_joke]
+db.table("jokes").where(answer = "inheritance").all()
+=> [nerd_joke]
 db.table("jokes").delete() # Removes all jokes.
 ```
 
